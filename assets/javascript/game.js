@@ -66,10 +66,12 @@ $('#char3').prepend("<img src=" + char3.image + " >");
 $('#char4').prepend("<img src=" + char4.image + " >");
 
 var mainCharChosen = false;
+var chosenChar;
 
 if (mainCharChosen === false) {
     $(".char").click(function () {
         mainCharChosen = true;
+        chosenChar = this;
         this.attr("id", "mainChar");
 
     });
