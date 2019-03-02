@@ -6,40 +6,40 @@ var characters = [
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     },
     choco = {
         name: "Chocobo",
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     },
     cloud = {
         name: "Cloud",
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     },
     tifa = {
         name: "Tifa",
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     },
     barr = {
         name: "Barrett",
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     }
 ]
 
@@ -49,8 +49,8 @@ var bossArray = [
         hp: 100,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/50x50",
-        defeatedImage: "https://via.placeholder.com/50x50",
+        image: "https://via.placeholder.com/100x100",
+        defeatedImage: "https://via.placeholder.com/100x100",
     }
 ]
 
@@ -61,39 +61,47 @@ var char4 = characters[Math.floor(Math.random() * characters.length)]
 
 
 $('#char1').prepend("<img src=" + char1.image + " >");
+$("#char1stats").prepend("HP: " + char1.hp);
 $('#char2').prepend("<img src=" + char2.image + " >");
+$("#char2stats").prepend("HP: " + char2.hp);
 $('#char3').prepend("<img src=" + char3.image + " >");
+$("#char3stats").prepend("HP: " + char3.hp);
 $('#char4').prepend("<img src=" + char4.image + " >");
+$("#char4stats").prepend("HP: " + char4.hp);
 
 var mainCharChosen = false;
 var chosenChar;
+var currentEnemy = false;
+var chosenEnemy;
 
-if (mainCharChosen === false) {
-    $(".char").click(function () {
+$(".char").click(function () {
+
+    // Select Main character
+    if (mainCharChosen === false) {
         mainCharChosen = true;
         chosenChar = this;
-        this.attr("id", "mainChar");
-
-    });
-}
-
+        $(this).removeClass("char").appendTo("#mainChar")
+        $("#instruction").empty().append("You must now defeat the others, " +
+            "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
 
 
-// $("https://via.placeholder.com/50x50character").on.("click", function {
+        // If selecting again, go to the enemy position
+    } else if (currentEnemy === false && this !== chosenChar) {
+        $(this).appendTo("#currentEnemy")
+        $("#instruction").empty().append("<h3>Fight to the death!");
+        currentEnemy = true;
+        chosenEnemy = this;
+        $("#fight").append("<button>FIGHT!")
+    }
+});
 
-//     move to character location
+$("#fight").click(function () {
+    if (currentEnemy === true) {
 
-//     var chosenChar = this
+    }
 
-//     chosenChar = true
+});
 
-// })
-
-// Mention Leveling up in text
-
-// Defeat all the other foes
-
-// Choose wisely!click on another enemy to attack
 
 // function attack(character) {
 

@@ -17,22 +17,59 @@
 
 <body>
     <div class="container">
-
+        <br>
+        <!-- All of the random characters together -->
         <div class="row">
             <div id="char1" class="col-md-3 char"></div>
             <div id="char2" class="col-md-3 char"></div>
             <div id="char3" class="col-md-3 char"></div>
             <div id="char4" class="col-md-3 char"></div>
         </div>
-
         <div class="row">
-            <div id="instruction">
-                <h3>Choose a character to play as!</h3>
+            <div id="char1stats" class="col-md-3 char"></div>
+            <div id="char2stats" class="col-md-3 char"></div>
+            <div id="char3stats" class="col-md-3 char"></div>
+            <div id="char4stats" class="col-md-3 char"></div>
+        </div>
+        <br>
+
+        <!-- Instructions -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Heed my words...</h5>
+                        <p id="instruction" class="card-text">Choose a character to play as!</p>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Main Character -->
         <div class="row">
-            <h4>Main Character</h4>
-            <div id="mainChar"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <h4>Main Character</h4>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="mainChar"></div>
+
+
+        </div>
+
+        <!-- Enemy -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <h4>Current Enemy</h4>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3" id="currentEnemy"></div>
+        </div>
+
+        <!-- Fight Buttons -->
+        <div class="row">
+            <div id="fight"></div>
         </div>
     </div>
 
