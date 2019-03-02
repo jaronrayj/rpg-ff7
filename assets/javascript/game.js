@@ -2,40 +2,45 @@
 // Make this into an array to randomize it? Have other characters?
 var characters = [
     sephy = {
+        id: "sephy",
         name: "Sephiroth",
-        hp: 100,
-        attack: 20,
+        hp: 400,
+        attack: 50,
         counter: 20,
         image: "https://via.placeholder.com/100x100",
         defeatedImage: "https://via.placeholder.com/100x100",
     },
     choco = {
+        id: "choco",
         name: "Chocobo",
-        hp: 100,
-        attack: 20,
+        hp: 200,
+        attack: 30,
         counter: 20,
         image: "https://via.placeholder.com/100x100",
         defeatedImage: "https://via.placeholder.com/100x100",
     },
     cloud = {
+        id: "cloud",
         name: "Cloud",
-        hp: 100,
+        hp: 280,
         attack: 20,
         counter: 20,
         image: "https://via.placeholder.com/100x100",
         defeatedImage: "https://via.placeholder.com/100x100",
     },
     tifa = {
+        id: "tifa",
         name: "Tifa",
-        hp: 100,
+        hp: 190,
         attack: 20,
         counter: 20,
         image: "https://via.placeholder.com/100x100",
         defeatedImage: "https://via.placeholder.com/100x100",
     },
     barr = {
+        id: "barr",
         name: "Barrett",
-        hp: 100,
+        hp: 300,
         attack: 20,
         counter: 20,
         image: "https://via.placeholder.com/100x100",
@@ -46,9 +51,9 @@ var characters = [
 var bossArray = [
     bah = {
         name: "Bahamut",
-        hp: 100,
+        hp: 4000,
         attack: 20,
-        counter: 20,
+        counter: 100,
         image: "https://via.placeholder.com/100x100",
         defeatedImage: "https://via.placeholder.com/100x100",
     }
@@ -60,13 +65,14 @@ var char3 = characters[Math.floor(Math.random() * characters.length)]
 var char4 = characters[Math.floor(Math.random() * characters.length)]
 
 
-$('#char1').prepend("<img src=" + char1.image + " >");
+
+$('#char1').prepend("<img src=" + char1.image + " >").attr("id", char1);
 $("#char1stats").prepend("HP: " + char1.hp);
-$('#char2').prepend("<img src=" + char2.image + " >");
+$('#char2').prepend("<img src=" + char2.image + " >").attr("id", char2);
 $("#char2stats").prepend("HP: " + char2.hp);
-$('#char3').prepend("<img src=" + char3.image + " >");
+$('#char3').prepend("<img src=" + char3.image + " >").attr("id", char3);
 $("#char3stats").prepend("HP: " + char3.hp);
-$('#char4').prepend("<img src=" + char4.image + " >");
+$('#char4').prepend("<img src=" + char4.image + " >").attr("id", char4);
 $("#char4stats").prepend("HP: " + char4.hp);
 
 var mainCharChosen = false;
@@ -78,11 +84,33 @@ $(".char").click(function () {
 
     // Select Main character
     if (mainCharChosen === false) {
+
         mainCharChosen = true;
         chosenChar = this;
-        $(this).removeClass("char").appendTo("#mainChar")
+        $(this).appendTo("#mainChar")
         $("#instruction").empty().append("You must now defeat the others, " +
             "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
+
+
+        //Initialize array of objects.
+        // let characters = [
+        //     { id: 0, name: "Jhon" },
+        //     { id: 1, name: "Sara" },
+        //     { id: 2, name: "Domnic" },
+        //     { id: 3, name: "Bravo" }
+        // ],
+
+        // //Find index of specific object using findIndex method.    
+        // objIndex = characters.findIndex((obj => obj.name == chosenChar.name));
+
+        // //Log object to Console.
+        // console.log("Before update: ", characters[objIndex])
+
+        // //Update object's name property.
+        // characters[objIndex].name = "Laila"
+
+        // //Log object to console again.
+        // console.log("After update: ", characters[objIndex])
 
 
         // If selecting again, go to the enemy position
@@ -91,6 +119,7 @@ $(".char").click(function () {
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
         chosenEnemy = this;
+        console.log(chosenEnemy);
         $("#fight").append("<button>FIGHT!")
     }
 });
