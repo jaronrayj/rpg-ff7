@@ -7,7 +7,7 @@ var characters = [
         hp: 400,
         attack: 50,
         counter: 20,
-        image: "../images/sephy.gif",
+        image: "./assets/images/sephy.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     choco = {
@@ -16,7 +16,7 @@ var characters = [
         hp: 200,
         attack: 30,
         counter: 20,
-        image: "../images/choco.gif",
+        image: "./assets/images/choco.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     cloud = {
@@ -25,7 +25,7 @@ var characters = [
         hp: 280,
         attack: 20,
         counter: 20,
-        image: "../images/cloud.gif",
+        image: "./assets/images/cloud.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     tifa = {
@@ -34,7 +34,7 @@ var characters = [
         hp: 190,
         attack: 20,
         counter: 20,
-        image: "../images/tifa.gif",
+        image: "./assets/images/tifa.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     barr = {
@@ -43,7 +43,7 @@ var characters = [
         hp: 300,
         attack: 20,
         counter: 20,
-        image: "../images/barr.gif",
+        image: "./assets/images/barr.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     }
 ]
