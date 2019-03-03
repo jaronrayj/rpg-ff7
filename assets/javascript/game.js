@@ -2,49 +2,49 @@
 // Make this into an array to randomize it? Have other characters?
 var characters = [
     sephy = {
-        id: "sephy",
+        id: 0,
         name: "Sephiroth",
         hp: 400,
         attack: 50,
         counter: 20,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        image: "../images/sephy.gif",
+        defeatedImage: "https://via.placeholder.com/150x150",
     },
     choco = {
-        id: "choco",
+        id: 1,
         name: "Chocobo",
         hp: 200,
         attack: 30,
         counter: 20,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        image: "../images/choco.gif",
+        defeatedImage: "https://via.placeholder.com/150x150",
     },
     cloud = {
-        id: "cloud",
+        id: 2,
         name: "Cloud",
         hp: 280,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        image: "../images/cloud.gif",
+        defeatedImage: "https://via.placeholder.com/150x150",
     },
     tifa = {
-        id: "tifa",
+        id: 3,
         name: "Tifa",
         hp: 190,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        image: "../images/tifa.gif",
+        defeatedImage: "https://via.placeholder.com/150x150",
     },
     barr = {
-        id: "barr",
+        id: 4,
         name: "Barrett",
         hp: 300,
         attack: 20,
         counter: 20,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        image: "../images/barr.gif",
+        defeatedImage: "https://via.placeholder.com/150x150",
     }
 ]
 
@@ -53,26 +53,28 @@ var bossArray = [
         name: "Bahamut",
         hp: 4000,
         attack: 20,
-        counter: 100,
-        image: "https://via.placeholder.com/100x100",
-        defeatedImage: "https://via.placeholder.com/100x100",
+        counter: 150,
+        image: "https://via.placeholder.com/150x150",
+        defeatedImage: "https://via.placeholder.com/150x150",
     }
 ]
 
 var char1 = characters[Math.floor(Math.random() * characters.length)]
+
+
 var char2 = characters[Math.floor(Math.random() * characters.length)]
 var char3 = characters[Math.floor(Math.random() * characters.length)]
 var char4 = characters[Math.floor(Math.random() * characters.length)]
 
 
 
-$('#char1').prepend("<img src=" + char1.image + " >").attr("id", char1);
+$('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
 $("#char1stats").prepend("HP: " + char1.hp);
-$('#char2').prepend("<img src=" + char2.image + " >").attr("id", char2);
+$('#char2').prepend("<img src=" + char2.image + " >").attr("value", char2.id);
 $("#char2stats").prepend("HP: " + char2.hp);
-$('#char3').prepend("<img src=" + char3.image + " >").attr("id", char3);
+$('#char3').prepend("<img src=" + char3.image + " >").attr("value", char3.id);
 $("#char3stats").prepend("HP: " + char3.hp);
-$('#char4').prepend("<img src=" + char4.image + " >").attr("id", char4);
+$('#char4').prepend("<img src=" + char4.image + " >").attr("value", char4.id);
 $("#char4stats").prepend("HP: " + char4.hp);
 
 var mainCharChosen = false;
@@ -87,6 +89,8 @@ $(".char").click(function () {
 
         mainCharChosen = true;
         chosenChar = this;
+
+        console.log(this);
         $(this).appendTo("#mainChar")
         $("#instruction").empty().append("You must now defeat the others, " +
             "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
