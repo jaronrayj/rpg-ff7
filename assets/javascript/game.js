@@ -13,7 +13,7 @@ var characters = [
     choco = {
         id: 1,
         name: "Chocobo",
-        hp: 200,
+        hp: 250,
         attack: 30,
         counter: 20,
         image: "./assets/images/choco.gif",
@@ -60,8 +60,6 @@ var bossArray = [
 ]
 
 var char1 = characters[Math.floor(Math.random() * characters.length)]
-
-
 var char2 = characters[Math.floor(Math.random() * characters.length)]
 var char3 = characters[Math.floor(Math.random() * characters.length)]
 var char4 = characters[Math.floor(Math.random() * characters.length)]
@@ -69,52 +67,39 @@ var char4 = characters[Math.floor(Math.random() * characters.length)]
 
 
 $('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
-$("#char1stats").prepend("HP: " + char1.hp);
+$("#char1stats").prepend("<h5>" + char1.name).append("<h6>HP: " + char1.hp).append("<h6>Attack: " + char1.attack);
 $('#char2').prepend("<img src=" + char2.image + " >").attr("value", char2.id);
-$("#char2stats").prepend("HP: " + char2.hp);
+$("#char2stats").prepend("<h5>" + char2.name).append("<h6>HP: " + char2.hp).append("<h6>Attack: " + char2.attack);
 $('#char3').prepend("<img src=" + char3.image + " >").attr("value", char3.id);
-$("#char3stats").prepend("HP: " + char3.hp);
+$("#char3stats").prepend("<h5>" + char3.name).append("<h6>HP: " + char3.hp).append("<h6>Attack: " + char3.attack);
 $('#char4').prepend("<img src=" + char4.image + " >").attr("value", char4.id);
-$("#char4stats").prepend("HP: " + char4.hp);
+$("#char4stats").prepend("<h5>" + char4.name).append("<h6>HP: " + char4.hp).append("<h6>Attack: " + char4.attack);
 
 var mainCharChosen = false;
 var chosenChar;
 var currentEnemy = false;
 var chosenEnemy;
 
-$(".char").click(function () {
+$(".char").on("click", function () {
 
     // Select Main character
     if (mainCharChosen === false) {
-
         mainCharChosen = true;
         chosenChar = this;
+        console.log(this.value);
 
-        console.log(this);
+        // Working code from calculator
+        // $(".operator").on("click", function () {
+        //     // $("#operator").text(this.value);
+        //     operator = this.value;
+        //     console.log(operator);
+        //     operatorClicked = true;
+        // })
+
+
         $(this).appendTo("#mainChar")
         $("#instruction").empty().append("You must now defeat the others, " +
             "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
-
-
-        //Initialize array of objects.
-        // let characters = [
-        //     { id: 0, name: "Jhon" },
-        //     { id: 1, name: "Sara" },
-        //     { id: 2, name: "Domnic" },
-        //     { id: 3, name: "Bravo" }
-        // ],
-
-        // //Find index of specific object using findIndex method.    
-        // objIndex = characters.findIndex((obj => obj.name == chosenChar.name));
-
-        // //Log object to Console.
-        // console.log("Before update: ", characters[objIndex])
-
-        // //Update object's name property.
-        // characters[objIndex].name = "Laila"
-
-        // //Log object to console again.
-        // console.log("After update: ", characters[objIndex])
 
 
         // If selecting again, go to the enemy position
