@@ -78,6 +78,7 @@ var mainCharChosen = false;
 var chosenChar;
 var currentEnemy = false;
 var chosenEnemy;
+var defeat = false;
 
 
 $("#char1").on("click", function () {
@@ -157,7 +158,7 @@ $("#char4").on("click", function () {
 
 
 $("#fight").click(function () {
-    if (currentEnemy === true) {
+    if (currentEnemy === true && defeat === false) {
         var pdisplay = "#" + chosenChar.id + "stats"
         var edisplay = "#" + chosenEnemy.id + "stats"
 
@@ -182,6 +183,7 @@ $("#fight").click(function () {
         if (chosenChar.hp <= 0) {
             $("#" + chosenChar.id).empty().append("<img src=" + chosenChar.defeatedImage + " >").attr("value", chosenChar.id);
             alert("You Lost...")
+            defeat = true;
 
 
         }

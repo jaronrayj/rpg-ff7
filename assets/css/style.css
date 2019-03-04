@@ -1,7 +1,8 @@
 body {
     background-image: url("../images/background.gif");
     background-size: cover;
-
+    font-family: 'Righteous',
+        cursive;
 }
 
 img {
@@ -12,7 +13,9 @@ img {
 }
 
 h4 {
-    color: white;
+    color: #ffffcc;
+    /* background: grey; */
+
 }
 
 h5 {
@@ -28,5 +31,10 @@ h5 {
 }
 
 #cardstyle {
-    background: #0413A5
+    background: #0413A5;
+    text-align: center;
+}
+
+.charmenu {
+    text-align: center;
 }
