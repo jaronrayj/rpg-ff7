@@ -16,8 +16,8 @@ var characters = [
         hp: 250,
         attack: 30,
         counter: 20,
-        image: "./assets/images/choco.gif",
-        defeatedImage: "https://via.placeholder.com/150x150",
+        image: "./assets/images/chocoresize.gif",
+        defeatedImage: "./assets/images/chocodead.png",
     },
     cloud = {
         id: "char3",
@@ -25,7 +25,7 @@ var characters = [
         hp: 280,
         attack: 20,
         counter: 20,
-        image: "./assets/images/cloud.gif",
+        image: "./assets/images/cloudresize.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     tifa = {
@@ -34,7 +34,7 @@ var characters = [
         hp: 190,
         attack: 20,
         counter: 20,
-        image: "./assets/images/tifa.gif",
+        image: "./assets/images/tifaresize.gif",
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     barr = {
@@ -63,8 +63,6 @@ var char1 = characters[0]
 var char2 = characters[1]
 var char3 = characters[2]
 var char4 = characters[3]
-
-var player = {};
 
 
 $('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
@@ -163,17 +161,16 @@ $("#fight").click(function () {
 
         var enemyCounter = chosenEnemy.counter;
         chosenChar.hp = chosenChar.hp - enemyCounter;
-        console.log(chosenChar.hp);
         chosenEnemy.hp = chosenEnemy.hp - chosenChar.attack;
-        console.log(chosenEnemy.hp);
 
         chosenChar.attack += 10;
         console.log("attack " + chosenChar.attack);
         $(pdisplay).empty().append("<h5>" + chosenChar.name).append("<h6>HP: " + chosenChar.hp).append("<h6>Attack: " + chosenChar.attack);
         $(edisplay).empty().append("<h5>" + chosenEnemy.name).append("<h6>HP: " + chosenEnemy.hp).append("<h6>Attack: " + chosenEnemy.attack);
 
-        if (chosenEnemy.hp <= 0) {
 
+        if (chosenEnemy.hp <= 0) {
+            chosenEnemy.defeatedImage
             currentEnemy = false;
 
         } else if (chosenChar <= 0) {
