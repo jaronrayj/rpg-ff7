@@ -38,3 +38,7 @@ h5 {
 .charmenu {
     text-align: center;
 }
+
+.card {
+    justify-content: center;
+}

@@ -12,7 +12,7 @@ var characters = [
     },
     choco = {
         id: "char2",
-        name: "Chocobo",
+        name: "Fat Chocobo",
         hp: 300,
         attack: 30,
         counter: 20,
