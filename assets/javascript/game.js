@@ -2,7 +2,7 @@
 // Make this into an array to randomize it? Have other characters?
 var characters = [
     sephy = {
-        id: 0,
+        id: "char1",
         name: "Sephiroth",
         hp: 400,
         attack: 50,
@@ -11,7 +11,7 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     choco = {
-        id: 1,
+        id: "char2",
         name: "Chocobo",
         hp: 250,
         attack: 30,
@@ -20,7 +20,7 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     cloud = {
-        id: 2,
+        id: "char3",
         name: "Cloud",
         hp: 280,
         attack: 20,
@@ -29,7 +29,7 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     tifa = {
-        id: 3,
+        id: "char4",
         name: "Tifa",
         hp: 190,
         attack: 20,
@@ -38,7 +38,7 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     },
     barr = {
-        id: 4,
+        id: "char5",
         name: "Barrett",
         hp: 300,
         attack: 20,
@@ -59,11 +59,12 @@ var bossArray = [
     }
 ]
 
-var char1 = characters[Math.floor(Math.random() * characters.length)]
-var char2 = characters[Math.floor(Math.random() * characters.length)]
-var char3 = characters[Math.floor(Math.random() * characters.length)]
-var char4 = characters[Math.floor(Math.random() * characters.length)]
+var char1 = characters[0]
+var char2 = characters[1]
+var char3 = characters[2]
+var char4 = characters[3]
 
+var player = {};
 
 
 $('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
@@ -80,61 +81,108 @@ var chosenChar;
 var currentEnemy = false;
 var chosenEnemy;
 
-$(".char").on("click", function () {
 
-    // Select Main character
+$("#char1").on("click", function () {
     if (mainCharChosen === false) {
+        $(this).appendTo("#mainChar").removeClass("col-md-3");
         mainCharChosen = true;
-        chosenChar = this;
-        console.log(this.value);
-
-        // Working code from calculator
-        // $(".operator").on("click", function () {
-        //     // $("#operator").text(this.value);
-        //     operator = this.value;
-        //     console.log(operator);
-        //     operatorClicked = true;
-        // })
-
-
-        $(this).appendTo("#mainChar")
+        chosenChar = char1;
         $("#instruction").empty().append("You must now defeat the others, " +
             "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
 
-
-        // If selecting again, go to the enemy position
-    } else if (currentEnemy === false && this !== chosenChar) {
-        $(this).appendTo("#currentEnemy")
+        // Select for Enemy instead
+    } else if (currentEnemy === false && char1 !== chosenChar) {
+        $(this).appendTo("#currentEnemy").removeClass("col-md-3");
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
-        chosenEnemy = this;
-        console.log(chosenEnemy);
-        $("#fight").append("<button>FIGHT!")
+        $("#fight").empty().append("<button>FIGHT!")
+        chosenEnemy = char1;
     }
 });
+
+$("#char2").on("click", function () {
+    if (mainCharChosen === false) {
+        $(this).appendTo("#mainChar").removeClass("col-md-3");
+        mainCharChosen = true;
+        chosenChar = char2;
+        $("#instruction").empty().append("You must now defeat the others, " +
+            "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
+
+        // Select for Enemy instead
+    } else if (currentEnemy === false && char2 !== chosenChar) {
+        $(this).appendTo("#currentEnemy").removeClass("col-md-3");
+        $("#instruction").empty().append("<h3>Fight to the death!");
+        currentEnemy = true;
+        chosenEnemy = char2;
+        $("#fight").empty().append("<button>FIGHT!")
+    }
+});
+
+$("#char3").on("click", function () {
+    if (mainCharChosen === false) {
+        $(this).appendTo("#mainChar").removeClass("col-md-3");
+        mainCharChosen = true;
+        chosenChar = char3;
+        $("#instruction").empty().append("You must now defeat the others, " +
+            "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
+
+        // Select for Enemy instead
+    } else if (currentEnemy === false && char3 !== chosenChar) {
+        $(this).appendTo("#currentEnemy").removeClass("col-md-3");
+        $("#instruction").empty().append("<h3>Fight to the death!");
+        currentEnemy = true;
+        chosenEnemy = char3;
+        $("#fight").empty().append("<button>FIGHT!")
+    }
+});
+
+$("#char4").on("click", function () {
+    if (mainCharChosen === false) {
+        $(this).appendTo("#mainChar").removeClass("col-md-3");
+        mainCharChosen = true;
+        chosenChar = char4;
+
+        $("#instruction").empty().append("You must now defeat the others, " +
+            "choose wisely otherwise their attacks will destroy you. You will level up as you keep fighting.");
+
+        // Select for Enemy instead
+    } else if (currentEnemy === false && char4 !== chosenChar) {
+        $(this).appendTo("#currentEnemy").removeClass("col-md-3");
+        $("#instruction").empty().append("<h3>Fight to the death!");
+        currentEnemy = true;
+        chosenEnemy = char4;
+        $("#fight").empty().append("<button>FIGHT!")
+    }
+});
+
 
 $("#fight").click(function () {
     if (currentEnemy === true) {
+        var pdisplay = "#" + chosenChar.id + "stats"
+        var edisplay = "#" + chosenEnemy.id + "stats"
 
+        var enemyCounter = chosenEnemy.counter;
+        chosenChar.hp = chosenChar.hp - enemyCounter;
+        console.log(chosenChar.hp);
+        chosenEnemy.hp = chosenEnemy.hp - chosenChar.attack;
+        console.log(chosenEnemy.hp);
+
+        chosenChar.attack += 10;
+        console.log("attack " + chosenChar.attack);
+        $(pdisplay).empty().append("<h5>" + chosenChar.name).append("<h6>HP: " + chosenChar.hp).append("<h6>Attack: " + chosenChar.attack);
+        $(edisplay).empty().append("<h5>" + chosenEnemy.name).append("<h6>HP: " + chosenEnemy.hp).append("<h6>Attack: " + chosenEnemy.attack);
+
+        if (chosenEnemy.hp <= 0) {
+
+            currentEnemy = false;
+
+        } else if (chosenChar <= 0) {
+            alert("You Lost...")
+        }
     }
 
 });
 
-
-// function attack(character) {
-
-//     on click attack specific character chosen;
-
-//     enemy.hp - attack
-
-//     chosencharacter.hp - counter
-
-//     display health
-//     for both characters
-
-//     attack += attack
-
-// }
 
 // if (chosenChar = true) {
 
