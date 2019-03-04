@@ -6,36 +6,36 @@ var characters = [
         name: "Sephiroth",
         hp: 400,
         attack: 50,
-        counter: 20,
+        counter: 30,
         image: "./assets/images/sephy.gif",
-        defeatedImage: "https://via.placeholder.com/150x150",
+        defeatedImage: "./assets/images/sephydead.png",
     },
     choco = {
         id: "char2",
         name: "Chocobo",
-        hp: 250,
+        hp: 300,
         attack: 30,
         counter: 20,
         image: "./assets/images/chocoresize.gif",
-        defeatedImage: "./assets/images/chocodead.png",
+        defeatedImage: "./assets/images/chocdead.png",
     },
     cloud = {
         id: "char3",
         name: "Cloud",
-        hp: 280,
-        attack: 20,
-        counter: 20,
+        hp: 350,
+        attack: 30,
+        counter: 30,
         image: "./assets/images/cloudresize.gif",
-        defeatedImage: "https://via.placeholder.com/150x150",
+        defeatedImage: "./assets/images/clouddead.png",
     },
     tifa = {
         id: "char4",
         name: "Tifa",
-        hp: 190,
+        hp: 275,
         attack: 20,
-        counter: 20,
+        counter: 50,
         image: "./assets/images/tifaresize.gif",
-        defeatedImage: "https://via.placeholder.com/150x150",
+        defeatedImage: "./assets/images/tifadead.png",
     },
     barr = {
         id: "char5",
@@ -64,7 +64,7 @@ var char2 = characters[1]
 var char3 = characters[2]
 var char4 = characters[3]
 
-
+// Set up the different characters
 $('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
 $("#char1stats").prepend("<h5>" + char1.name).append("<h6>HP: " + char1.hp).append("<h6>Attack: " + char1.attack);
 $('#char2').prepend("<img src=" + char2.image + " >").attr("value", char2.id);
@@ -98,6 +98,7 @@ $("#char1").on("click", function () {
     }
 });
 
+
 $("#char2").on("click", function () {
     if (mainCharChosen === false) {
         $(this).appendTo("#mainChar").removeClass("col-md-3");
@@ -115,6 +116,7 @@ $("#char2").on("click", function () {
         $("#fight").empty().append("<button>FIGHT!")
     }
 });
+
 
 $("#char3").on("click", function () {
     if (mainCharChosen === false) {
@@ -170,11 +172,18 @@ $("#fight").click(function () {
 
 
         if (chosenEnemy.hp <= 0) {
+            console.log(chosenEnemy);
+            $("#" + chosenEnemy.id).empty().append("<img src=" + chosenEnemy.defeatedImage + " >").attr("value", chosenEnemy.id);
             chosenEnemy.defeatedImage
             currentEnemy = false;
 
-        } else if (chosenChar <= 0) {
+        }
+
+        if (chosenChar.hp <= 0) {
+            $("#" + chosenChar.id).empty().append("<img src=" + chosenChar.defeatedImage + " >").attr("value", chosenChar.id);
             alert("You Lost...")
+
+
         }
     }
 

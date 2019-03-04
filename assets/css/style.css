@@ -1,0 +1,32 @@
+body {
+    background-image: url("../images/background.gif");
+    background-size: cover;
+
+}
+
+img {
+    max-width: 150px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+h4 {
+    color: white;
+}
+
+h5 {
+    color: #AA6E6F;
+}
+
+.border-secondary {
+    background: black;
+}
+
+.card-title {
+    color: white;
+}
+
+#cardstyle {
+    background: #0413A5
+}
