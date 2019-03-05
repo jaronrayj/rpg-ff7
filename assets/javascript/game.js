@@ -52,6 +52,18 @@ var battleMusic = document.getElementById("battle");
 
 battle();
 
+function victory() {
+    battleMusic.pause();
+    battleMusic.currentTime = 0;
+    victoryMusic.play();
+}
+
+function battle() {
+    victoryMusic.pause();
+    victoryMusic.currentTime = 0;
+    battleMusic.play();
+}
+
 var bossArray = [
     bah = {
         name: "Bahamut",
@@ -187,8 +199,6 @@ $("#fight").click(function () {
                 alert("You Win!")
                 victory();
 
-
-
             }
         }
 
@@ -205,19 +215,7 @@ $("#fight").click(function () {
 
 
 
-function victory() {
-    battleMusic.pause();
-    battleMusic.currentTime = 0;
-    victoryMusic.play();
-}
 
-
-
-function battle() {
-    victoryMusic.pause();
-    victoryMusic.currentTime = 0;
-    battleMusic.play();
-}
 
 
 
