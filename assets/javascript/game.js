@@ -94,8 +94,8 @@ $("#char1").on("click", function () {
         $(this).appendTo("#currentEnemy").removeClass("col-md-3");
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
-        $("#fight").empty().append("<button>FIGHT!")
         chosenEnemy = char1;
+        $("#fight").empty().append("<button>FIGHT!")
     }
 });
 
@@ -156,6 +156,7 @@ $("#char4").on("click", function () {
     }
 });
 
+var wins;
 
 $("#fight").click(function () {
     if (currentEnemy === true && defeat === false) {
@@ -177,7 +178,11 @@ $("#fight").click(function () {
             $("#" + chosenEnemy.id).empty().append("<img src=" + chosenEnemy.defeatedImage + " >").attr("value", chosenEnemy.id);
             chosenEnemy.defeatedImage
             currentEnemy = false;
+            wins++;
+            if (wins === 3) {
+                alert("You Win!")
 
+            }
         }
 
         if (chosenChar.hp <= 0) {
