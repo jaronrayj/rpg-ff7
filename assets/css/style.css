@@ -5,6 +5,10 @@ body {
         cursive;
 }
 
+.char {
+    margin: auto;
+}
+
 img {
     max-width: 150px;
     margin: auto;

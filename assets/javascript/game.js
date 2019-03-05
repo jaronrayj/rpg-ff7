@@ -52,7 +52,7 @@ var characters = [
 var victoryMusic = document.getElementById("victory");
 var battleMusic = document.getElementById("battle");
 
-battle();
+// battle();    
 
 function victory() {
     battleMusic.pause();
@@ -106,25 +106,26 @@ var wins = 0;
 function reset() {
     wins = 0;
     mainCharChosen = false;
-    chosenChar = "";
+    chosenChar;
     currentEnemy = false;
-    chosenEnemy = "";
+    chosenEnemy;
     defeat = false;
     battle();
-    $("#char1").appendTo("#start").addClass("col-md-3")
-    $("#char2").appendTo("#start").addClass("col-md-3")
-    $("#char3").appendTo("#start").addClass("col-md-3")
-    $("#char4").appendTo("#start").addClass("col-md-3")
+    $("#char1").appendTo("#start").addClass("col-md-3");
+    $("#char2").appendTo("#start").addClass("col-md-3");
+    $("#char3").appendTo("#start").addClass("col-md-3");
+    $("#char4").appendTo("#start").addClass("col-md-3");
     $("#instruction").empty().append("Choose a main character");
-    $("#fight").hide()
-    char1.hp = 400
-    char2.hp = 300
-    char3.hp = 350
-    char4.hp = 275
-    char1.attack = 50
-    char1.attack = 30
-    char1.attack = 35
-    char1.attack = 40
+    $("#fight").hide();
+    char1.hp = 400;
+    char2.hp = 300;
+    char3.hp = 350;
+    char4.hp = 275;
+    char1.attack = 50;
+    char1.attack = 30;
+    char1.attack = 35;
+    char1.attack = 40;
+    defeat === false;
 
     initiate();
 
@@ -146,6 +147,7 @@ $("#char1").on("click", function () {
         currentEnemy = true;
         chosenEnemy = char1;
         $("#fight").show().empty().append("<button>FIGHT!")
+        fight();
     }
 });
 
@@ -164,7 +166,8 @@ $("#char2").on("click", function () {
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
         chosenEnemy = char2;
-        $("#fight").empty().append("<button>FIGHT!")
+        $("#fight").show().empty().append("<button>FIGHT!")
+        fight();
     }
 });
 
@@ -183,7 +186,8 @@ $("#char3").on("click", function () {
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
         chosenEnemy = char3;
-        $("#fight").empty().append("<button>FIGHT!")
+        $("#fight").show().empty().append("<button>FIGHT!")
+        fight();
     }
 });
 
@@ -202,37 +206,53 @@ $("#char4").on("click", function () {
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
         chosenEnemy = char4;
-        $("#fight").empty().append("<button>FIGHT!")
+        $("#fight").show().empty().append("<button>FIGHT!")
+        fight();
     }
 });
 
 var wins;
 
-$("#fight").click(function () {
-    if (currentEnemy === true && defeat === false) {
-        var pdisplay = "#" + chosenChar.id + "stats"
-        var edisplay = "#" + chosenEnemy.id + "stats"
+function fight() {
 
-        var enemyCounter = chosenEnemy.counter;
-        chosenChar.hp = chosenChar.hp - enemyCounter;
-        chosenEnemy.hp = chosenEnemy.hp - chosenChar.attack;
+    $("#fight").click(function () {
+        if (currentEnemy === true && defeat === false) {
+            var pdisplay = "#" + chosenChar.id + "stats"
+            var edisplay = "#" + chosenEnemy.id + "stats"
 
-        chosenChar.attack += 10;
-        console.log("attack " + chosenChar.attack);
-        $(pdisplay).empty().append("<h5>" + chosenChar.name).append("<h6>HP: " + chosenChar.hp).append("<h6>Attack: " + chosenChar.attack);
-        $(edisplay).empty().append("<h5>" + chosenEnemy.name).append("<h6>HP: " + chosenEnemy.hp).append("<h6>Attack: " + chosenEnemy.attack);
+            var enemyCounter = chosenEnemy.counter;
+            chosenChar.hp = chosenChar.hp - enemyCounter;
+            chosenEnemy.hp = chosenEnemy.hp - chosenChar.attack;
+
+            chosenChar.attack += 10;
+            console.log("attack " + chosenChar.attack);
+            $(pdisplay).empty().append("<h5>" + chosenChar.name).append("<h6>HP: " + chosenChar.hp).append("<h6>Attack: " + chosenChar.attack);
+            $(edisplay).empty().append("<h5>" + chosenEnemy.name).append("<h6>HP: " + chosenEnemy.hp).append("<h6>Attack: " + chosenEnemy.attack);
 
 
-        if (chosenEnemy.hp <= 0) {
-            console.log(chosenEnemy);
-            $("#" + chosenEnemy.id + "Image").empty().append("<img src=" + chosenEnemy.defeatedImage + " >").attr("value", chosenEnemy.id);
-            chosenEnemy.defeatedImage
-            currentEnemy = false;
-            wins++;
-            console.log(wins);
-            if (wins === 3) {
-                alert("You Win!")
-                victory();
+            if (chosenEnemy.hp <= 0) {
+                console.log(chosenEnemy);
+                $("#" + chosenEnemy.id + "Image").empty().append("<img src=" + chosenEnemy.defeatedImage + " >").attr("value", chosenEnemy.id);
+
+                chosenEnemy.defeatedImage
+                currentEnemy = false;
+                wins++;
+                console.log(wins);
+                if (wins === 3) {
+                    alert("You Win!")
+                    victory();
+                    $("#fight").empty().append("<button>Try Again?").on("click", function () {
+                        reset();
+                    })
+
+
+                }
+            }
+
+            if (chosenChar.hp <= 0) {
+                $("#" + chosenChar.id + "Image").empty().append("<img src=" + chosenChar.defeatedImage + " >").attr("value", chosenChar.id);
+                alert("You Lost...")
+                defeat = true;
                 $("#fight").empty().append("<button>Try Again?").on("click", function () {
                     reset();
                 })
@@ -241,19 +261,8 @@ $("#fight").click(function () {
             }
         }
 
-        if (chosenChar.hp <= 0) {
-            $("#" + chosenChar.id + "Image").empty().append("<img src=" + chosenChar.defeatedImage + " >").attr("value", chosenChar.id);
-            alert("You Lost...")
-            defeat = true;
-            $("#fight").empty().append("<button>Try Again?").on("click", function () {
-                reset();
-            })
-
-
-        }
-    }
-
-});
+    });
+}
 
 
 
