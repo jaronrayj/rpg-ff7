@@ -47,6 +47,10 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     }
 ]
+var victoryMusic = document.getElementById("victory");
+var battleMusic = document.getElementById("battle");
+
+battle();
 
 var bossArray = [
     bah = {
@@ -181,6 +185,9 @@ $("#fight").click(function () {
             wins++;
             if (wins === 3) {
                 alert("You Win!")
+                victory();
+
+
 
             }
         }
@@ -195,6 +202,23 @@ $("#fight").click(function () {
     }
 
 });
+
+
+
+function victory() {
+    battleMusic.pause();
+    battleMusic.currentTime = 0;
+    victoryMusic.play();
+}
+
+
+
+function battle() {
+    victoryMusic.pause();
+    victoryMusic.currentTime = 0;
+    battleMusic.play();
+}
+
 
 
 // if (chosenChar = true) {
