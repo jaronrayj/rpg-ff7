@@ -47,6 +47,8 @@ var characters = [
         defeatedImage: "https://via.placeholder.com/150x150",
     }
 ]
+
+
 var victoryMusic = document.getElementById("victory");
 var battleMusic = document.getElementById("battle");
 
@@ -81,20 +83,52 @@ var char3 = characters[2]
 var char4 = characters[3]
 
 // Set up the different characters
-$('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
-$("#char1stats").prepend("<h5>" + char1.name).append("<h6>HP: " + char1.hp).append("<h6>Attack: " + char1.attack);
-$('#char2').prepend("<img src=" + char2.image + " >").attr("value", char2.id);
-$("#char2stats").prepend("<h5>" + char2.name).append("<h6>HP: " + char2.hp).append("<h6>Attack: " + char2.attack);
-$('#char3').prepend("<img src=" + char3.image + " >").attr("value", char3.id);
-$("#char3stats").prepend("<h5>" + char3.name).append("<h6>HP: " + char3.hp).append("<h6>Attack: " + char3.attack);
-$('#char4').prepend("<img src=" + char4.image + " >").attr("value", char4.id);
-$("#char4stats").prepend("<h5>" + char4.name).append("<h6>HP: " + char4.hp).append("<h6>Attack: " + char4.attack);
+function initiate() {
+    $('#char1').prepend("<img src=" + char1.image + " >").attr("value", char1.id);
+    $("#char1stats").empty().prepend("<h5>" + char1.name).append("<h6>HP: " + char1.hp).append("<h6>Attack: " + char1.attack);
+    $('#char2').prepend("<img src=" + char2.image + " >").attr("value", char2.id);
+    $("#char2stats").prepend("<h5>" + char2.name).append("<h6>HP: " + char2.hp).append("<h6>Attack: " + char2.attack);
+    $('#char3').prepend("<img src=" + char3.image + " >").attr("value", char3.id);
+    $("#char3stats").prepend("<h5>" + char3.name).append("<h6>HP: " + char3.hp).append("<h6>Attack: " + char3.attack);
+    $('#char4').prepend("<img src=" + char4.image + " >").attr("value", char4.id);
+    $("#char4stats").prepend("<h5>" + char4.name).append("<h6>HP: " + char4.hp).append("<h6>Attack: " + char4.attack);
+}
 
+initiate();
 var mainCharChosen = false;
 var chosenChar;
 var currentEnemy = false;
 var chosenEnemy;
 var defeat = false;
+var wins = 0;
+
+
+function reset() {
+    wins = 0;
+    mainCharChosen = false;
+    chosenChar = "";
+    currentEnemy = false;
+    chosenEnemy = "";
+    defeat = false;
+    battle();
+    $("#char1").appendTo("#start").addClass("col-md-3")
+    $("#char2").appendTo("#start").addClass("col-md-3")
+    $("#char3").appendTo("#start").addClass("col-md-3")
+    $("#char4").appendTo("#start").addClass("col-md-3")
+    $("#instruction").empty().append("Choose a main character");
+    $("#fight").hide()
+    char1.hp = 400
+    char2.hp = 300
+    char3.hp = 350
+    char4.hp = 275
+    char1.attack = 50
+    char1.attack = 30
+    char1.attack = 35
+    char1.attack = 40
+
+    initiate();
+
+}
 
 
 $("#char1").on("click", function () {
@@ -111,7 +145,7 @@ $("#char1").on("click", function () {
         $("#instruction").empty().append("<h3>Fight to the death!");
         currentEnemy = true;
         chosenEnemy = char1;
-        $("#fight").empty().append("<button>FIGHT!")
+        $("#fight").show().empty().append("<button>FIGHT!")
     }
 });
 
@@ -195,9 +229,14 @@ $("#fight").click(function () {
             chosenEnemy.defeatedImage
             currentEnemy = false;
             wins++;
+            console.log(wins);
             if (wins === 3) {
                 alert("You Win!")
                 victory();
+                $("#fight").empty().append("<button>Try Again?").on("click", function () {
+                    reset();
+                })
+
 
             }
         }
@@ -206,6 +245,9 @@ $("#fight").click(function () {
             $("#" + chosenChar.id).empty().append("<img src=" + chosenChar.defeatedImage + " >").attr("value", chosenChar.id);
             alert("You Lost...")
             defeat = true;
+            $("#fight").empty().append("<button>Try Again?").on("click", function () {
+                reset();
+            })
 
 
         }
