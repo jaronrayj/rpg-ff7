@@ -52,7 +52,7 @@ var characters = [
 var victoryMusic = document.getElementById("victory");
 var battleMusic = document.getElementById("battle");
 
-// battle();    
+battle();
 
 function victory() {
     battleMusic.pause();
