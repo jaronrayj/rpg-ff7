@@ -46,3 +46,7 @@ h5 {
 .card {
     justify-content: center;
 }
+
+button {
+    margin: auto;
+}
