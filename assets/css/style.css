@@ -47,6 +47,7 @@ h5 {
     justify-content: center;
 }
 
-button {
+#fight #reset {
     margin: auto;
+    text-align: center;
 }
